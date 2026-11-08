@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" font-family="Arial, Helvetica, sans-serif">
+  <clipPath id="frame"><rect x="0" y="0" width="1200" height="430" rx="14"/></clipPath>
+  <g clip-path="url(#frame)">
+    <!-- background -->
+    <rect x="0" y="0" width="1200" height="430" fill="#0d1117"/>
+    <rect x="0" y="0" width="1200" height="2" fill="#58a6ff" opacity="0.55"/>
+
+    <!-- title -->
+    <text x="600" y="58" text-anchor="middle" font-size="38" font-weight="bold" fill="#e6edf3">cacheproxy</text>
+    <text x="600" y="88" text-anchor="middle" font-size="17" fill="#8b949e">HTTP caching reverse proxy &#183; Rust &#183; zero dependencies &#183; RFC 9111 rules</text>
+
+    <!-- ================= clients ================= -->
+    <text x="185" y="128" text-anchor="middle" font-size="15" font-weight="bold" fill="#8b949e">CLIENTS</text>
+    <rect x="70" y="142" width="230" height="52" rx="10" fill="#161b22" stroke="#30363d"/>
+    <text x="185" y="173" text-anchor="middle" font-size="15" fill="#c9d1d9">&#128187; client A</text>
+    <rect x="70" y="207" width="230" height="52" rx="10" fill="#161b22" stroke="#30363d"/>
+    <text x="185" y="238" text-anchor="middle" font-size="15" fill="#c9d1d9">&#128187; client B</text>
+    <rect x="70" y="272" width="230" height="52" rx="10" fill="#161b22" stroke="#30363d"/>
+    <text x="185" y="303" text-anchor="middle" font-size="15" fill="#c9d1d9">&#128187; client C</text>
+
+    <!-- ================= proxy ================= -->
+    <rect x="455" y="128" width="330" height="250" rx="14" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+    <text x="620" y="158" text-anchor="middle" font-size="20" font-weight="bold" fill="#58a6ff">cacheproxy</text>
+    <rect x="475" y="176" width="290" height="34" rx="8" fill="#0d1117"/>
+    <text x="620" y="198" text-anchor="middle" font-size="14" fill="#79c0ff">byte-capped LRU &#183; in memory &#183; 64 MB</text>
+    <rect x="475" y="218" width="290" height="34" rx="8" fill="#0d1117"/>
+    <text x="620" y="240" text-anchor="middle" font-size="14" fill="#79c0ff">request coalescing &#183; 100 clients &#8594; 1 fetch</text>
+    <rect x="475" y="260" width="290" height="34" rx="8" fill="#0d1117"/>
+    <text x="620" y="282" text-anchor="middle" font-size="14" fill="#79c0ff">ETag revalidation &#183; only 304s when possible</text>
+    <rect x="475" y="302" width="290" height="34" rx="8" fill="#0d1117"/>
+    <text x="620" y="324" text-anchor="middle" font-size="14" fill="#79c0ff">Cache-Control &#183; Expires &#183; Vary &#183; Age</text>
+    <rect x="545" y="344" width="150" height="24" rx="12" fill="#1f6feb" opacity="0.25"/>
+    <text x="620" y="360" text-anchor="middle" font-size="13" fill="#79c0ff">GET /__stats &#8594; JSON</text>
+
+    <!-- ================= origin ================= -->
+    <rect x="920" y="170" width="230" height="120" rx="14" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+    <text x="1035" y="205" text-anchor="middle" font-size="17" font-weight="bold" fill="#3fb950">origin API</text>
+    <text x="1035" y="232" text-anchor="middle" font-size="14" fill="#c9d1d9">http://localhost:3000</text>
+    <text x="1035" y="258" text-anchor="middle" font-size="13" fill="#8b949e">(your database behind it)</text>
+
+    <!-- ================= arrows clients -> proxy -> origin ================= -->
+    <!-- client to proxy -->
+    <line x1="300" y1="168" x2="450" y2="168" stroke="#8b949e" stroke-width="2" marker-end="url(#ah)"/>
+    <text x="375" y="160" text-anchor="middle" font-size="13" fill="#8b949e">GET</text>
+    <line x1="300" y1="233" x2="450" y2="233" stroke="#8b949e" stroke-width="2" marker-end="url(#ah)"/>
+    <text x="375" y="225" text-anchor="middle" font-size="13" fill="#8b949e">GET</text>
+    <line x1="300" y1="298" x2="450" y2="298" stroke="#8b949e" stroke-width="2" marker-end="url(#ah)"/>
+    <text x="375" y="290" text-anchor="middle" font-size="13" fill="#8b949e">GET</text>
+
+    <!-- proxy back to clients (hits) -->
+    <line x1="455" y1="365" x2="310" y2="365" stroke="#26a641" stroke-width="2.5" marker-end="url(#ah)"/>
+    <text x="382" y="388" text-anchor="middle" font-size="14" fill="#26a641" font-weight="bold">X-Cache: HIT &#8592; from memory</text>
+
+    <!-- proxy to origin -->
+    <line x1="785" y1="200" x2="915" y2="200" stroke="#8b949e" stroke-width="2" marker-end="url(#ah)"/>
+    <text x="850" y="192" text-anchor="middle" font-size="13" fill="#8b949e">fetch once</text>
+    <line x1="915" y1="253" x2="785" y2="253" stroke="#8b949e" stroke-width="2" marker-end="url(#ah)"/>
+    <text x="850" y="272" text-anchor="middle" font-size="13" fill="#8b949e">conditional revalidation</text>
+
+    <!-- ================= legend ================= -->
+    <rect x="40" y="404" width="64" height="18" rx="9" fill="#bb8009" opacity="0.35"/>
+    <text x="72" y="416" text-anchor="middle" font-size="11" fill="#f0b72e">MISS</text>
+    <rect x="112" y="404" width="52" height="18" rx="9" fill="#1a7f37" opacity="0.55"/>
+    <text x="138" y="416" text-anchor="middle" font-size="11" fill="#2ea043">HIT</text>
+    <rect x="172" y="404" width="106" height="18" rx="9" fill="#1a7f37" opacity="0.35"/>
+    <text x="225" y="416" text-anchor="middle" font-size="11" fill="#2ea043">REVALIDATED</text>
+    <rect x="286" y="404" width="92" height="18" rx="9" fill="#1f6feb" opacity="0.35"/>
+    <text x="332" y="416" text-anchor="middle" font-size="11" fill="#58a6ff">COALESCED</text>
+    <rect x="386" y="404" width="74" height="18" rx="9" fill="#8b949e" opacity="0.3"/>
+    <text x="423" y="416" text-anchor="middle" font-size="11" fill="#c9d1d9">BYPASS</text>
+    <text x="1160" y="416" text-anchor="end" font-size="11" fill="#484f58">thread per connection &#183; keep-alive &#183; 10 MB max object</text>
+
+    <defs>
+      <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b949e"/>
+      </marker>
+    </defs>
+  </g>
+</svg>

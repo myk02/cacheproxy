@@ -1,0 +1,25 @@
+[package]
+name = "cacheproxy"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.82"
+description = "A small HTTP caching reverse proxy: Cache-Control, ETag revalidation, byte-capped LRU, request coalescing. Zero dependencies."
+license = "MIT"
+readme = "README.md"
+keywords = ["http", "cache", "proxy", "lru"]
+categories = ["web-programming::http-server", "caching"]
+
+[lib]
+name = "cacheproxy"
+path = "src/lib.rs"
+
+[[bin]]
+name = "cacheproxy"
+path = "src/main.rs"
+
+[dependencies]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
